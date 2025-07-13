@@ -17,18 +17,10 @@ This directory contains my exploration and implementation of polynomial regressi
 - ✅ For modeling complex relationships with simple polynomial terms
 - ✅ To capture feature interactions (e.g., TV × Radio synergy effects)
 - ❌ Avoid high degrees (>4) to prevent overfitting
-- ❌ Not suitable for extrapolation beyond training data range
+- ❌ Not suitable for extrapolation beyond training data range - (Extrapolation in the context of polynomial regression means making predictions outside the range of data that the model was trained on)
 - ❌ Be careful with numerical instability at very high degrees
 
 ## Implementation Details
-
-### Files in this Directory
-- `Polynomial_Regression.ipynb` - Main implementation and experimentation
-- `README.md` - This documentation file
-- `advertising.csv` - Dataset used for analysis (TV, Radio, Newspaper → Sales)
-- `final_sales_model.joblib` - Saved linear regression model
-- `Final_model.joblib` - Saved polynomial regression model (degree 3)
-- `Final_Converter.joblib` - Saved polynomial feature transformer
 
 ### Key Steps Implemented
 
@@ -65,6 +57,7 @@ This directory contains my exploration and implementation of polynomial regressi
 
 ## Key Insights & Learnings
 
+
 ### Technical Insights
 - ✅ Higher degree polynomials can capture more complex patterns but risk overfitting
 - ✅ Feature scaling becomes critical with higher degree polynomials due to vastly different magnitudes
@@ -87,6 +80,19 @@ This directory contains my exploration and implementation of polynomial regressi
 - ✅ **Transform vs Fit-Transform**: Must use `transform()` only on new data, not `fit_transform()`
 - ✅ **Model persistence**: Need to save both PolynomialFeatures transformer and the model
 - ✅ **Numerical instability**: Very high degrees can cause computational issues
+
+### **Common Split Ratios in ML:**
+| Split Ratio | Use Case | Pros | Cons |
+|-------------|----------|------|------|
+| **80%/20%** | Large datasets (>10k samples) | More training data | Smaller test set |
+| **70%/30%** | Medium datasets (1k-10k) | Balanced approach | Standard choice |
+| **67%/33%** | Small-medium datasets | Good balance | Your choice |
+| **60%/40%** | Small datasets (<1k) | Larger test set | Less training data |
+
+### **Your Dataset Context:**
+- **Advertising dataset**: ~200 samples
+- **67%/33%** = 134 training samples + 66 test samples
+- This gives you enough training data while keeping a substantial test set
 
 ## Code Snippets & References
 
@@ -262,5 +268,4 @@ prediction = loaded_model.predict(poly_features)
 
 ---
 
-*Last Updated: July 11, 2025*
-*Next Review: August 11, 2025*
+*Last Updated: July 13, 2025*
